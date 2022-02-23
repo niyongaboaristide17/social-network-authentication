@@ -8,7 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      dataOfBirth: {
+      dateOfBirth: {
         type: Sequelize.DATE
       },
       gender: {
@@ -19,6 +19,11 @@ module.exports = {
       },
       education: {
         type: Sequelize.STRING
+      },
+      userId: {
+        type: Sequelize.INTEGER,
+        references: { model: 'Users', key: 'id' },
+        onDelete: 'CASCADE',
       },
       createdAt: {
         allowNull: false,
