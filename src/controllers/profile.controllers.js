@@ -4,12 +4,7 @@ import { UserService } from "../services/user.service"
 export class ProfileController {
     static async create(req, res, next){
         try {
-            const user = {...req.body.user}
-            const profile = {...req.body}
-            delete profile.user
-            const createUser = await UserService.create(user)
-            profile['userId'] = createUser.id
-            res.status(201).send(await ProfileService.create(profile))
+            res.status(201).send(await ProfileService.create({...req.body}))
         } catch (error) {
             console.log(error)
             res.status(406).send({error: error.message})
